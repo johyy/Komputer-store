@@ -2,8 +2,10 @@ header {
     background: black;
     color: white;
     padding: 15px;
+    padding-left: 120px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     position: relative;
+    font-size: 20px;
 }
 
 main {
@@ -13,49 +15,113 @@ main {
     column-gap: 1px;
     row-gap: 3px;
     grid-gap: 1em;
-
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
-  .grid {
-    position: relative;
+
+  section {
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    border-radius: 12px;
+    background-color: rgba(128,128,128,0.1)
+  }
+
+  .grid-3 {
+    padding-bottom: 5px;
   }
 
   .grid-4 {
-    grid-column: 1 / 3;
-
+    grid-column: 1 / 4;
+    border: 2em;
+    border: #c73f61;
+    padding-left: 70px;
   }
 
   img {
-    width: 150px;
+    width: 200px;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    grid-column: 1;
   }
 
   button {
     background-color: #c73f61;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 20px;
     text-align: center;
     font-size: 16px;
     margin: 4px 2px;
     border-radius: 12px;
-
+    position: relative;
+    bottom: -150px;
   }
 
   .loanbutton {
     background-color:rgb(22, 206, 175);
+    padding: 15px 92px;
+    bottom: -130px;
   }
 
   .bankbutton {
     background-color: rgb(238, 226, 120);
+    padding: 15px 20px;
   }
 
   .workbutton {
     background-color: dodgerblue;
-  }
-
-  .paybutton {
-    background-color: indianred;
+    padding: 15px 20px;
   }
 
   .buybutton {
     background-color: rgb(105, 161, 224);
+    padding: 15px 72px;
+    position: absolute;
+    bottom: -90px;
+    left: 850px;
+  }
+  
+  h1 {
+    font-size: 50px;
+    position: absolute;
+    top: 480px;
+    left: 420px;
+  }
+
+  .money {
+    position: relative;
+    left: 180px;
+  }
+
+  .money::after {
+    content: " €"
+  }
+
+  .loan {
+    left: 200px;
+  }
+
+  .info {
+    font-size: 20px;
+    position: absolute;
+    top: 600px;
+    left: 420px;
+    padding-right: 500px;
+  }
+
+  .price {
+    font-size: 40px;
+    font-weight: 900;
+    position: absolute;
+    top: 560px;
+    left: 910px;
+  }
+
+  .price::after {
+    content: " €";
   }

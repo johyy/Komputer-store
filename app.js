@@ -29,7 +29,13 @@ fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
 
 const addLaptopsToSelect = (laptops) => {
     laptops.forEach(laptop => addLapTopToSelect(laptop))
-    featuresElement.innerText = laptops[0].specs;
+    const listSpecs = document.createElement("ul");
+    for (const spec of laptops[0].specs) {
+        const listItem = document.createElement("li");
+        listItem.textContent = spec;
+        listSpecs.appendChild(listItem);
+    }
+    featuresElement.appendChild(listSpecs);
     priceElement.innerText = laptops[0].price;
     pictureElement.src = "https://noroff-komputer-store-api.herokuapp.com/"+laptops[0].image;
     nameElement.innerText = laptops[0].title;
@@ -46,13 +52,21 @@ const addLapTopToSelect = (laptop) => {
 }
 
 const handleLaptopSelectionChange = e => {
+    featuresElement.innerText = null;
+    const listSpecs = document.createElement("ul");
     const selectedLaptop = laptops[e.target.selectedIndex];
     pictureElement.src = "https://noroff-komputer-store-api.herokuapp.com/"+selectedLaptop.image;
-    featuresElement.innerText = selectedLaptop.specs;
+    for (const spec of selectedLaptop.specs) {
+        const listItem = document.createElement("li");
+        listItem.textContent = spec;
+        listSpecs.appendChild(listItem);
+    }
+    featuresElement.appendChild(listSpecs);
     priceElement.innerText = selectedLaptop.price;
     nameElement.innerText = selectedLaptop.title;
     infoElement.innerText = selectedLaptop.description;
     price = selectedLaptop.price;
+    laptop = selectedLaptop.title;
 }
 
 const handleWork = () => {
@@ -68,7 +82,7 @@ const handleGetLoan = () => {
         loanElement.innerHTML = totalLoan;
         loan = true;
         repayButtonElement = document.createElement("button");
-        repayButtonElement.innerText = "Repay Loan";
+        repayButtonElement.innerText = "Repay";
         repayButtonElement.id = "repay";
         payloanElement.appendChild(repayButtonElement)
         repayButtonElement.addEventListener("click", handleRepayLoan);
