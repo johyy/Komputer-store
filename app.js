@@ -1,6 +1,7 @@
 const laptopsElement = document.getElementById("laptops");
 const balanceElement = document.getElementById("balance");
 const loanElement = document.getElementById("loan");
+const loanTextElement = document.getElementById("loantext");
 const loanButtonElement = document.getElementById("getloan");
 const salaryElement = document.getElementById("salary")
 const bankButtonElement = document.getElementById("tobank");
@@ -14,9 +15,9 @@ const buyButtonElement = document.getElementById("buy");
 const payloanElement = document.getElementById("payloan");
 
 let laptops = [];
-let totalSalary = 0;
-let totalLoan = 0;
-let total = 0;
+let totalSalary = 0.0;
+let totalLoan = 0.0;
+let total = 0.0;
 let loan = false;
 let repayButtonElement = null;
 let price = 0;
@@ -92,8 +93,11 @@ const handleGetLoan = () => {
         alert("You can only get loan up to " + (total*2) + " euros.")
     }
 
+    if (loan == true) {
     balanceElement.innerText = total;
-    loanElement.innerHTML = totalLoan;
+    loanElement.innerHTML = totalLoan + " €";
+    loanTextElement.textContent = "Loan"
+    }
 }
 
 const handleBank = () => {
@@ -106,6 +110,8 @@ const handleBank = () => {
         if (totalLoan == 0) {
             loan = false;
             payloanElement.removeChild(repayButtonElement);
+            loanElement.textContent = "";
+            loanTextElement.textContent = ""
         }
     } else {
         let residue = (totalSalary * 0.1) - totalLoan;
@@ -113,12 +119,16 @@ const handleBank = () => {
         total += (totalSalary * 0.9) + residue;
         loan = false;
         payloanElement.removeChild(repayButtonElement);
+        loanElement.textContent = "";
+        loanTextElement.textContent = ""
     }
 
     totalSalary = 0;
     salaryElement.innerText = totalSalary;
     balanceElement.innerText = total;
-    loanElement.innerText = totalLoan;
+    if (loan == true) {
+        loanElement.innerText = totalLoan + " €";
+    }
 }
 
 const handleRepayLoan = () => {
@@ -127,6 +137,8 @@ const handleRepayLoan = () => {
         totalLoan = 0;
         loan = false;
         payloanElement.removeChild(repayButtonElement);
+        loanElement.textContent = "";
+        loanTextElement.textContent = ""
         total += residue;
     } else {
         totalLoan -= totalSalary;
@@ -135,7 +147,9 @@ const handleRepayLoan = () => {
     totalSalary = 0;
     salaryElement.innerText = totalSalary;
     balanceElement.innerText = total;
-    loanElement.innerHTML = totalLoan;
+    if (loan == true) {
+    loanElement.innerText = totalLoan + " €";
+    }
 }
 
 const handleBuyLaptop = () => {
@@ -151,7 +165,7 @@ const handleBuyLaptop = () => {
 const handleAll = () => {
     salaryElement.innerText = totalSalary;
     balanceElement.innerText = total;
-    loanElement.innerText = totalLoan;
+
 }
 
 handleAll();
